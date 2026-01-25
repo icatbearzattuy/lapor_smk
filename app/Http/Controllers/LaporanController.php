@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Laporan;
 use Illuminate\Http\Request;
 
@@ -37,13 +38,23 @@ class LaporanController extends Controller
             'id_kategori' => 'required|integer|exists:tbl_kategori, id_kategori',
         ]);
 
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('laporan', $imageName, 'public');
+            $imagePath = 'laporan/' . $imageName;
+        }
+
         Laporan::create([
             'judul_laporan' => $request->judul_laporan,
             'isi_laporan' => $request->isi_laporan,
             'tanggal_laporan' => $request->tanggal_laporan,
-            'image' => $request->image,
+            'image' => $imagePath,
+            'id_user' => Auth::user()->id,
             'id_kategori' => $request->id_kategori,
         ]);
+
+        return redirect()->route('dashboard')->with('success', 'Laporan berhasil ditambahkan!');
     }
 
     /**
