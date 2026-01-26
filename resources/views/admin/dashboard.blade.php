@@ -37,7 +37,7 @@
             <span class="material-symbols-rounded text-blue-500 text-xl">query_stats</span>
             Statitik
           </h3>
-          <ul class="space-y-2">
+          {{-- <ul class="space-y-2">
             <li class="text-sm text-gray-600 pb-2 border-b border-gray-100">
               <p class="font-medium text-gray-800">Laporan baru masuk</p>
               <p class="text-xs text-gray-400">2 menit yang lalu</p>
@@ -50,7 +50,7 @@
               <p class="font-medium text-gray-800">Admin login</p>
               <p class="text-xs text-gray-400">1 jam yang lalu</p>
             </li>
-          </ul>
+          </ul> --}}
         </div>
       </div>
     </div>
