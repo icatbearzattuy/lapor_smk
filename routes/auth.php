@@ -59,10 +59,21 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminLaporanController::class, 'index'])
-        ->name('admin.dashboard');
-
-    Route::get('admin/laporan', [AdminLaporanController::class, 'laporan'])
-        ->name('admin.laporan');
-});
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/dashboard', [AdminLaporanController::class, 'index'])
+            ->name('admin.dashboard');
+        Route::get('/laporan', [AdminLaporanController::class, 'laporan'])
+            ->name('admin.laporan');
+        Route::get('/laporan/{id}/edit', [AdminLaporanController::class, 'edit'])
+            ->name('admin.laporan.edit');
+        Route::put('/laporan/{id}', [AdminLaporanController::class, 'update'])
+            ->name('admin.laporan.update');
+        Route::get('/laporan/tambah', [AdminLaporanController::class, 'create'])
+            ->name('admin.laporan.tambah');
+        Route::post('/laporan/store', [AdminLaporanController::class, 'store'])
+            ->name('admin.laporan.store');
+        Route::delete('/laporan/destroy', [AdminLaporanController::class, 'destroy'])
+            ->name('admin.laporan.destroy');
+    });

@@ -23,7 +23,7 @@
 <body class="min-h-screen bg-gray-100 flex">
   <section>
   <!-- Mobile Menu Button -->
-  <button class="sidebar-menu-button fixed left-5 top-5 z-20 hidden lg:hidden w-10 h-10 bg-blue-500 text-white rounded-lg items-center justify-center">
+  <button class="sidebar-menu-button fixed left-5 top-5 z-20 hidden lg:hidden w-10 h-10 bg-blue-500 text-white rounded items-center justify-center">
     <span class="material-symbols-rounded">menu</span>
   </button>
 
@@ -35,7 +35,7 @@
       <a href="#" class="header-logo">
         <img src="logo.png" alt="Logo" class="w-12 h-12 rounded-full object-contain">
       </a>
-      <button class="sidebar-toggler absolute right-5 w-9 h-9 bg-blue-500 text-white rounded-lg flex items-center justify-center transition-all duration-400 hover:bg-blue-800">
+      <button class="sidebar-toggler absolute right-5 w-9 h-9 bg-blue-500 text-white rounded flex items-center justify-center transition-all duration-400 hover:bg-blue-800">
         <span class="material-symbols-rounded transition-transform duration-400">chevron_left</span>
       </button>
     </header>
@@ -72,7 +72,7 @@
 
         <!-- Laporan -->
         <li class="nav-item relative">
-          <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap">
+          <a href="{{ route('admin.laporan') }}" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap">
             <span class="material-symbols-rounded">breaking_news</span>
             <span class="nav-label transition-opacity duration-300">Laporan</span>
           </a>
