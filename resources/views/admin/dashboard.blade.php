@@ -8,7 +8,7 @@
 <div class="px-6">
   <div class="grid grid-cols-4 gap-6">
     <!-- Calendar Section -->
-    <div class="col-span-3" id="app">
+    <div class="col-span-3 border border-red-400" id="app">
       <div class="bg-white rounded-lg shadow-md p-4">
         <el-calendar v-model="value"></el-calendar>
       </div>
@@ -74,7 +74,7 @@
           </tr>
       </thead>
       <tbody class="divide-y divide-gray-100">
-          @forelse($simulations as $sim)
+          {{-- @forelse($simulations as $sim) --}}
               <tr class="hover:bg-gray-50">
                   <td class="px-6 py-4 text-sm text-gray-500"></td>
                   <td class="px-6 py-4 text-sm text-gray-900"></td>
@@ -85,11 +85,11 @@
                   <td class="px-6 py-4 text-sm font-semibold text-green-600"></td>
                   <td class="px-6 py-4 text-sm text-gray-500"></td>
               </tr>
-          @empty
-              <tr>
+          {{-- @empty --}}
+              {{-- <tr>
                   <td colspan="8" class="px-6 py-8 text-center text-gray-500">No simulation data yet</td>
-              </tr>
-          @endforelse
+              </tr> --}}
+          {{-- @endforelse --}}
       </tbody>
   </table>
 </div>
