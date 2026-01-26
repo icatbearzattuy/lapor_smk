@@ -8,7 +8,7 @@
 <div class="px-6">
   <div class="grid grid-cols-4 gap-6">
     <!-- Calendar Section -->
-    <div class="col-span-3 border border-red-400" id="app">
+    <div class="col-span-3 border" id="app">
       <div class="bg-white rounded-lg shadow-md p-4">
         <el-calendar v-model="value"></el-calendar>
       </div>
@@ -57,39 +57,40 @@
   </div>
 </div>
 
-{{-- table --}}
 <!-- Table -->
-<div class="overflow-x-auto">
+<div class="overflow-x-auto border mt-6">
   <table class="w-full">
       <thead class="bg-gray-50">
           <tr>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">User</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Bank</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nominal</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Interest</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Final</th>
-              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Time</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Gambar</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Judul Laporan</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Deskripsi</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pelapor</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kategori</th>
           </tr>
       </thead>
       <tbody class="divide-y divide-gray-100">
-          {{-- @forelse($simulations as $sim) --}}
+          @forelse($laporan as $lap)
               <tr class="hover:bg-gray-50">
-                  <td class="px-6 py-4 text-sm text-gray-500"></td>
-                  <td class="px-6 py-4 text-sm text-gray-900"></td>
-                  <td class="px-6 py-4 text-sm font-medium text-gray-900"></td>
-                  <td class="px-6 py-4 text-sm text-gray-900"></td>
-                  <td class="px-6 py-4 text-sm text-gray-900"></td>
-                  <td class="px-6 py-4 text-sm text-blue-600 font-medium"></td>
-                  <td class="px-6 py-4 text-sm font-semibold text-green-600"></td>
-                  <td class="px-6 py-4 text-sm text-gray-500"></td>
+                <td class="px-6 py-4">
+                  @if ($lap->image)
+                    <img src="{{ asset('storage/'.$lap->image) }}" class="w-16 h-16 object-cover rounded">
+                  @else
+                    <span class="text-gray-400">No Image</span>
+                  @endif
+                </td>
+                  <td class="px-6 py-4 text-sm text-gray-900">{{ $lap->judul_laporan }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-900">{{ $lap->isi_laporan }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-900">{{ $lap->tanggal_laporan }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-900">{{ $lap->user->name ?? 'N/A' }}</td>
+                  <td class="px-6 py-4 text-sm text-gray-900">{{ $lap->kategori->nama_kategori ?? 'N/A'}}</td>
               </tr>
-          {{-- @empty --}}
-              {{-- <tr>
-                  <td colspan="8" class="px-6 py-8 text-center text-gray-500">No simulation data yet</td>
-              </tr> --}}
-          {{-- @endforelse --}}
+          @empty
+              <tr>
+                  <td colspan="8" class="px-6 py-8 text-center text-gray-500">Tidak ada laporan</td>
+              </tr>
+          @endforelse
       </tbody>
   </table>
 </div>

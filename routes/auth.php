@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminLaporanController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -59,7 +60,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/admin/dashboard', [AdminLaporanController::class, 'index'])
+        ->name('admin.dashboard');
+
+    Route::get('admin/laporan', [AdminLaporanController::class, 'laporan'])
+        ->name('admin.laporan');
 });
