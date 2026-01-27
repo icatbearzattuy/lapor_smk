@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('isi_laporan');
             $table->date('tanggal_laporan');
             $table->string('image')->nullable();
-            $table->integer('id_user')->nullable()->index('id_user');
+            $table->unsignedBigInteger('id_user')->nullable()->index('id_user');
             $table->integer('id_kategori')->nullable()->index('id_kategori');
         });
     }

@@ -14,9 +14,9 @@ class Laporan extends Model
         'judul_laporan',
         'isi_laporan',
         'tanggal_laporan',
+        'image',
         'id_user',
         'id_kategori',
-        'image',
     ];
 
     public function kategori()

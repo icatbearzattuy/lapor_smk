@@ -21,7 +21,7 @@
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pelapor</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kategori</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                <th class="px-6 py-3 text-xs text-center font-medium text-gray-500 uppercase">Aksi</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-100">
@@ -39,20 +39,23 @@
                     <td class="px-6 py-4 text-sm text-gray-900">{{ $lap->tanggal_laporan }}</td>
                     <td class="px-6 py-4 text-sm text-gray-900">{{ $lap->user->name ?? 'N/A' }}</td>
                     <td class="px-6 py-4 text-sm text-gray-900">{{ $lap->kategori->nama_kategori ?? 'N/A'}}</td>
-                    <td class="px-6 py-4 flex gap-2 text-sm">
-                      {{-- edit --}}
-                      <a href="{{ route('admin.laporan.edit', $lap->id_laporan) }}"
-                        class="py-3 py-1 bg-gray-200 rounded text-xs text-gray-900">
-                        Edit
-                      </a>
-                      {{-- Delete --}}
-                      <form action="{{ route('admin.laporan.destroy', $lap->id_laporan) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="px-3 py-1 bg-red-700 rounded text-white text-xs">
-                          Hapus
-                        </button>
-                      </form>
+                    <td class="px-6 py-4">
+                      <div class="flex items-center justify-center gap-2 text-sm">
+                        {{-- Edit --}}
+                        <a href="{{ route('admin.laporan.edit', $lap->id_laporan) }}"
+                          class="px-3 py-1 bg-gray-200 rounded text-xs text-gray-900">
+                          Edit
+                        </a>
+                        {{-- Delete --}}
+                        <form action="{{ route('admin.laporan.destroy', $lap->id_laporan) }}" method="POST"
+                          onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="px-3 py-1 bg-red-700 rounded text-white text-xs">
+                            Hapus
+                          </button>
+                        </form>
+                      </div>
                     </td>
                 </tr>
             @empty

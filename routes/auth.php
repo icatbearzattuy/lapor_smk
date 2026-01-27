@@ -74,6 +74,6 @@ Route::middleware(['auth', 'role:admin'])
             ->name('admin.laporan.tambah');
         Route::post('/laporan/store', [AdminLaporanController::class, 'store'])
             ->name('admin.laporan.store');
-        Route::delete('/laporan/destroy', [AdminLaporanController::class, 'destroy'])
+        Route::delete('/laporan/{id}', [AdminLaporanController::class, 'destroy'])
             ->name('admin.laporan.destroy');
     });

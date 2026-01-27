@@ -47,7 +47,7 @@
         
         <!-- Dashboard -->
         <li class="nav-item relative">
-          <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap">
+          <a href="{{ route('admin.dashboard') }}" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap">
             <span class="material-symbols-rounded">dashboard</span>
             <span class="nav-label transition-opacity duration-300">Dashboard</span>
           </a>
