@@ -65,7 +65,7 @@
           </a>
           <ul class="dropdown-menu h-0 overflow-hidden list-none pl-4 transition-all duration-400">
             <li class="nav-item"><a class="nav-link dropdown-title hidden px-4 py-2 text-blue-900 font-medium">Manajemen Akun</a></li>
-            <li class="nav-item"><a href="#" class="nav-link dropdown-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-900 transition-all duration-400 hover:bg-gray-100">Siswa</a></li>
+            <li class="nav-item"><a href="{{ route('admin.siswa') }}" class="nav-link dropdown-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-900 transition-all duration-400 hover:bg-gray-100">Siswa</a></li>
             <li class="nav-item"><a href="#" class="nav-link dropdown-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-900 transition-all duration-400 hover:bg-gray-100">Admin</a></li>
           </ul>
         </li>

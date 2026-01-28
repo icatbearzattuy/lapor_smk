@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminLaporanController;
+use App\Http\Controllers\admin\AdminSiswaController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -64,6 +65,8 @@ Route::middleware(['auth', 'role:admin'])
     ->group(function () {
         Route::get('/dashboard', [AdminLaporanController::class, 'index'])
             ->name('admin.dashboard');
+
+        //Laporan
         Route::get('/laporan', [AdminLaporanController::class, 'laporan'])
             ->name('admin.laporan');
         Route::get('/laporan/{id}/edit', [AdminLaporanController::class, 'edit'])
@@ -76,4 +79,18 @@ Route::middleware(['auth', 'role:admin'])
             ->name('admin.laporan.store');
         Route::delete('/laporan/{id}', [AdminLaporanController::class, 'destroy'])
             ->name('admin.laporan.destroy');
+
+        //Siswa
+        Route::get('/siswa', [AdminSiswaController::class, 'index'])
+            ->name('admin.siswa');
+        Route::get('/siswa/{id}/edit', [AdminSiswaController::class, 'edit'])
+            ->name('admin.siswa.edit');
+        Route::put('/siswa/{id}', [AdminSiswaController::class, 'update'])
+            ->name('admin.siswa.update');
+        Route::get('/siswa/tambah', [AdminSiswaController::class, 'create'])
+            ->name('admin.siswa.tambah');
+        Route::post('/siswa/store', [AdminSiswaController::class, 'store'])
+            ->name('admin.siswa.store');
+        Route::delete('/siswa/{id}', [AdminSiswaController::class, 'destroy'])
+            ->name('admin.siswa.destroy');
     });
