@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Laporan;
 use Illuminate\Http\Request;
@@ -9,20 +10,12 @@ use Illuminate\Http\Request;
 class LaporanController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $Laporan = Laporan::all();
-        return view('dashboard');
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('dashboard-edit');
+        $kategori = Kategori::all();
+        return view('dashboard', compact('kategori'));
     }
 
     /**

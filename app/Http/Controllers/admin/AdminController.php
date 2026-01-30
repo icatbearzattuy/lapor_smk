@@ -6,18 +6,18 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminSiswaController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $siswa = User::where('role', 'user')
+        $admin = User::where('role', 'admin')
             ->orderBy('id_user', 'desc')
             ->get();
 
-        return view('admin.siswa', compact('siswa'));
+        return view('admin.admins', compact('admin'));
     }
 
     /**
@@ -25,7 +25,7 @@ class AdminSiswaController extends Controller
      */
     public function create()
     {
-        return view('admin.siswa.tambah');
+        return view('admin.admins.tambah');
     }
 
     /**
@@ -43,11 +43,19 @@ class AdminSiswaController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->pasasword),
-            'role' => 'user',
+            'role' => 'admin',
             'email_verified_at' => now(),
         ]);
 
-        return redirect('admin/siswa')->with('Success!');
+        return redirect('admin/admin')->with('Success!');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
     }
 
     /**
@@ -55,8 +63,8 @@ class AdminSiswaController extends Controller
      */
     public function edit($id)
     {
-        $siswa = User::findOrFail($id);
-        return view('admin.siswa.edit', compact('siswa'));
+        $admin = User::findOrFail($id);
+        return view('admin.admins.edit', compact('admin'));
     }
 
     /**
@@ -64,7 +72,7 @@ class AdminSiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $siswa = User::findOrFail($id);
+        $admin = User::findOrFail($id);
 
         $request->validate([
             'name' => 'max:50',
@@ -72,17 +80,17 @@ class AdminSiswaController extends Controller
             'password' => 'min:6'
         ]);
 
-        $siswa->update([
+        $admin->update([
             'name' => $request->name,
             'email' => $request->email,
         ]);
 
         if ($request->filled('password')) {
-            $siswa->update(['password' => bcrypt($request->password)]);
+            $admin->update(['password' => bcrypt($request->password)]);
         };
 
-        return redirect()->route('admin.siswa')
-            ->with('Success', 'Siswa berhasil di Update');
+        return redirect()->route('admin.admins')
+            ->with('Success', 'Admin berhasil di Update');
     }
 
     /**
@@ -90,11 +98,11 @@ class AdminSiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        $siswa = User::where('id_user', $id)
+        $admin = User::where('id_user', $id)
             ->firstOrFail();
 
-        $siswa->delete();
-        return redirect()->route('admin.siswa')
-            ->with('Success', 'Siswa berhasil di Delete');
+        $admin->delete();
+        return redirect()->route('admin.admins')
+            ->with('Success', 'Admin berhasil di Delete');
     }
 }

@@ -66,7 +66,7 @@
           <ul class="dropdown-menu h-0 overflow-hidden list-none pl-4 transition-all duration-400">
             <li class="nav-item"><a class="nav-link dropdown-title hidden px-4 py-2 text-blue-900 font-medium">Manajemen Akun</a></li>
             <li class="nav-item"><a href="{{ route('admin.siswa') }}" class="nav-link dropdown-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-900 transition-all duration-400 hover:bg-gray-100">Siswa</a></li>
-            <li class="nav-item"><a href="#" class="nav-link dropdown-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-900 transition-all duration-400 hover:bg-gray-100">Admin</a></li>
+            <li class="nav-item"><a href="{{ route('admin.admins') }}" class="nav-link dropdown-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-900 transition-all duration-400 hover:bg-gray-100">Admin</a></li>
           </ul>
         </li>
 
@@ -85,16 +85,20 @@
       <!-- Secondary Nav (Bottom) -->
       <ul class="nav-list secondary-nav absolute bottom-9 w-full bg-white flex flex-col gap-1 px-4">
 
-        <!-- Sign Out -->
-        <li class="nav-item relative">
-          <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap">
+      <!-- Sign Out -->
+      <li class="nav-item relative">
+        <form method="POST" action="{{ route('logout') }}" id="logout-form">
+          @csrf
+          <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <span class="material-symbols-rounded">logout</span>
             <span class="nav-label transition-opacity duration-300">Sign Out</span>
           </a>
-          <ul class="dropdown-menu h-0 overflow-hidden list-none pl-4 transition-all duration-400">
-            <li class="nav-item"><a class="nav-link dropdown-title hidden px-4 py-2 text-blue-900 font-medium">Sign Out</a></li>
-          </ul>
-        </li>
+        </form>
+        <ul class="dropdown-menu h-0 overflow-hidden list-none pl-4 transition-all duration-400">
+          <li class="nav-item"><a class="nav-link dropdown-title hidden px-4 py-2 text-blue-900 font-medium">Sign Out</a></li>
+        </ul>
+      </li>
       </ul>
     </nav>
   </aside>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminLaporanController;
 use App\Http\Controllers\admin\AdminSiswaController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -93,4 +94,18 @@ Route::middleware(['auth', 'role:admin'])
             ->name('admin.siswa.store');
         Route::delete('/siswa/{id}', [AdminSiswaController::class, 'destroy'])
             ->name('admin.siswa.destroy');
+
+        //Admin
+        Route::get('/admin', [AdminController::class, 'index'])
+            ->name('admin.admins');
+        Route::get('/admin/{id}/edit', [AdminController::class, 'edit'])
+            ->name('admin.admins.edit');
+        Route::put('/admin/{id}', [AdminController::class, 'update'])
+            ->name('admin.admins.update');
+        Route::get('/admin/tambah', [AdminController::class, 'create'])
+            ->name('admin.admins.tambah');
+        Route::post('/admin/store', [AdminController::class, 'store'])
+            ->name('admin.admins.store');
+        Route::delete('/admin/{id}', [AdminController::class, 'destroy'])
+            ->name('admin.admins.destroy');
     });
