@@ -28,7 +28,7 @@ class LaporanController extends Controller
             'isi_laporan' => 'required|string',
             'tanggal_laporan' => 'required|date',
             'image' => 'required|image|max:4096',
-            'id_kategori' => 'required|integer|exists:tbl_kategori, id_kategori',
+            'id_kategori' => 'required|integer|exists:tbl_kategori,id_kategori',
         ]);
 
         $imagePath = null;
