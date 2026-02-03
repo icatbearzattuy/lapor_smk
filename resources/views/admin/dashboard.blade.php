@@ -27,33 +27,6 @@
         new Ctor().$mount('#app')
       </script>
     </div>
-    
-     {{-- Stats --}}
-    <div class="col-span-1">
-      <div class="space-y-4">
-        <!-- Card 1: Notifications -->
-        <div class="bg-white rounded-lg shadow-md p-4">
-          <h3 class="font-semibold text-gray-800 mb-3 flex items-center gap-2">
-            <span class="material-symbols-rounded text-blue-500 text-xl">query_stats</span>
-            Statitik
-          </h3>
-          <ul class="space-y-2">
-            <li class="text-sm text-gray-600 pb-2 border-b border-gray-100">
-              <p class="font-medium text-gray-800">Laporan baru masuk</p>
-              <p class="text-xs text-gray-400">2 menit yang lalu</p>
-            </li>
-            <li class="text-sm text-gray-600 pb-2 border-b border-gray-100">
-              <p class="font-medium text-gray-800">Siswa baru terdaftar</p>
-              <p class="text-xs text-gray-400">15 menit yang lalu</p>
-            </li>
-            <li class="text-sm text-gray-600">
-              <p class="font-medium text-gray-800">Admin login</p>
-              <p class="text-xs text-gray-400">1 jam yang lalu</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 

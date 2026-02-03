@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
+    public function index()
+    {
+        $laporan = Laporan::where('id_user', Auth::user()->id_user)
+            ->with(['kategori', 'user'])
+            ->orderBy('tanggal_laporan', 'desc')
+            ->get();
+
+        $kategori = Kategori::all();
+
+        return view('dashboard', compact('laporan', 'kategori'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -43,7 +54,7 @@ class LaporanController extends Controller
             'isi_laporan' => $request->isi_laporan,
             'tanggal_laporan' => $request->tanggal_laporan,
             'image' => $imagePath,
-            'id_user' => Auth::user()->id,
+            'id_user' => Auth::user()->id_user,
             'id_kategori' => $request->id_kategori,
         ]);
 

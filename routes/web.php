@@ -12,8 +12,10 @@ Route::get('/auth', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', [LaporanController::class, 'create'])->middleware(['auth'])->name('dashboard');
-Route::post('/dashboard/store', [LaporanController::class, 'store'])->middleware(['auth'])->name('dashboard.store');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [LaporanController::class, 'index'])->name('dashboard');
+    Route::post('/dashboard/store', [LaporanController::class, 'store'])->name('dashboard.store');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
