@@ -35,7 +35,7 @@ class AdminSiswaController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:50',
-            'email' => 'required|email|max:30',
+            'email' => 'required|email|max:255',
             'password' => 'required|max:10',
         ]);
 

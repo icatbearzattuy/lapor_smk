@@ -107,6 +107,10 @@ class AdminLaporanController extends Controller
 
         $imagePath = $laporan->image;
         if ($request->hasFile('image')) {
+            if ($laporan->image && Storage::disk('public')->exists($laporan->image)) {
+                Storage::disk('public')->delete($laporan->image);
+            }
+
             $imageName = time() . '.' . $request->image->extension();
             $request->image->storeAs('laporan', $imageName, 'public');
             $imagePath = 'laporan/' . $imageName;

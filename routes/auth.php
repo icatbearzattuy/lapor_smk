@@ -70,42 +70,42 @@ Route::middleware(['auth', 'role:admin'])
         //Laporan
         Route::get('/laporan', [AdminLaporanController::class, 'laporan'])
             ->name('admin.laporan');
-        Route::get('/laporan/{id}/edit', [AdminLaporanController::class, 'edit'])
-            ->name('admin.laporan.edit');
-        Route::put('/laporan/{id}', [AdminLaporanController::class, 'update'])
-            ->name('admin.laporan.update');
         Route::get('/laporan/tambah', [AdminLaporanController::class, 'create'])
             ->name('admin.laporan.tambah');
         Route::post('/laporan/store', [AdminLaporanController::class, 'store'])
             ->name('admin.laporan.store');
+        Route::get('/laporan/{id}/edit', [AdminLaporanController::class, 'edit'])
+            ->name('admin.laporan.edit');
+        Route::put('/laporan/{id}', [AdminLaporanController::class, 'update'])
+            ->name('admin.laporan.update');
         Route::delete('/laporan/{id}', [AdminLaporanController::class, 'destroy'])
             ->name('admin.laporan.destroy');
 
         //Siswa
         Route::get('/siswa', [AdminSiswaController::class, 'index'])
             ->name('admin.siswa');
-        Route::get('/siswa/{id}/edit', [AdminSiswaController::class, 'edit'])
-            ->name('admin.siswa.edit');
-        Route::put('/siswa/{id}', [AdminSiswaController::class, 'update'])
-            ->name('admin.siswa.update');
         Route::get('/siswa/tambah', [AdminSiswaController::class, 'create'])
             ->name('admin.siswa.tambah');
         Route::post('/siswa/store', [AdminSiswaController::class, 'store'])
             ->name('admin.siswa.store');
+        Route::get('/siswa/{id}/edit', [AdminSiswaController::class, 'edit'])
+            ->name('admin.siswa.edit');
+        Route::put('/siswa/{id}', [AdminSiswaController::class, 'update'])
+            ->name('admin.siswa.update');
         Route::delete('/siswa/{id}', [AdminSiswaController::class, 'destroy'])
             ->name('admin.siswa.destroy');
 
         //Admin
         Route::get('/admin', [AdminController::class, 'index'])
             ->name('admin.admins');
-        Route::get('/admin/{id}/edit', [AdminController::class, 'edit'])
-            ->name('admin.admins.edit');
-        Route::put('/admin/{id}', [AdminController::class, 'update'])
-            ->name('admin.admins.update');
         Route::get('/admin/tambah', [AdminController::class, 'create'])
             ->name('admin.admins.tambah');
         Route::post('/admin/store', [AdminController::class, 'store'])
             ->name('admin.admins.store');
+        Route::get('/admin/{id}/edit', [AdminController::class, 'edit'])
+            ->name('admin.admins.edit');
+        Route::put('/admin/{id}', [AdminController::class, 'update'])
+            ->name('admin.admins.update');
         Route::delete('/admin/{id}', [AdminController::class, 'destroy'])
             ->name('admin.admins.destroy');
     });
