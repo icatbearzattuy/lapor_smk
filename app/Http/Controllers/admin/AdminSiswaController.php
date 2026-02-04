@@ -42,12 +42,12 @@ class AdminSiswaController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->pasasword),
+            'password' => bcrypt($request->password),
             'role' => 'user',
             'email_verified_at' => now(),
         ]);
 
-        return redirect('admin/siswa')->with('Success!');
+        return redirect()->route('admin.siswa')->with('success', 'Siswa berhasil ditambahkan!');
     }
 
     /**
@@ -67,9 +67,9 @@ class AdminSiswaController extends Controller
         $siswa = User::findOrFail($id);
 
         $request->validate([
-            'name' => 'max:50',
-            'email' => 'max:25',
-            'password' => 'min:6'
+            'name' => 'required|string|max:50',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|min:6'
         ]);
 
         $siswa->update([

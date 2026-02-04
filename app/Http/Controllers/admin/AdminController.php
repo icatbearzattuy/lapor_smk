@@ -42,12 +42,12 @@ class AdminController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->pasasword),
+            'password' => bcrypt($request->password),
             'role' => 'admin',
             'email_verified_at' => now(),
         ]);
 
-        return redirect('admin/admin')->with('Success!');
+        return redirect()->route('admin.admins')->with('success', 'Admin berhasil ditambahkan!');
     }
 
     /**
@@ -75,9 +75,9 @@ class AdminController extends Controller
         $admin = User::findOrFail($id);
 
         $request->validate([
-            'name' => 'max:50',
-            'email' => 'max:25',
-            'password' => 'min:6'
+            'name' => 'required|string|max:50',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|min:6'
         ]);
 
         $admin->update([

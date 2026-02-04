@@ -44,8 +44,6 @@ class AdminLaporanController extends Controller
      */
     public function store(Request $request)
     {
-        $kategori = Kategori::all();
-
         $request->validate([
             'judul_laporan' => 'required|string|max:50',
             'isi_laporan' => 'required|string',
@@ -70,7 +68,7 @@ class AdminLaporanController extends Controller
             'id_kategori' => $request->id_kategori,
         ]);
 
-        return view('admin.laporan.tambah', compact('kategori'));
+        return redirect()->route('admin.laporan')->with('success', 'Laporan berhasil ditambahkan!');
     }
 
     /**
@@ -103,7 +101,7 @@ class AdminLaporanController extends Controller
             'judul_laporan' => 'required|string|max:50',
             'isi_laporan' => 'required|string',
             'tanggal_laporan' => 'required|date',
-            'image' => 'required|image|max:4096',
+            'image' => 'nullable|image|max:4096',
             'id_kategori' => 'required|integer|exists:tbl_kategori,id_kategori',
         ]);
 
@@ -123,8 +121,8 @@ class AdminLaporanController extends Controller
             'id_kategori' => $request->id_kategori,
         ]);
 
-        return redirect()->route('admin.laporan', compact('kategori'))
-            ->with('Success', 'Laporan berhasil diubah!');
+        return redirect()->route('admin.laporan')
+            ->with('success', 'Laporan berhasil diubah!');
     }
 
     /**
@@ -141,6 +139,6 @@ class AdminLaporanController extends Controller
         $laporan->delete();
 
         return redirect()->route('admin.laporan')
-            ->with('Success', 'Laporan berhasil diubah!');
+            ->with('success', 'Laporan berhasil dihapus!');
     }
 }
