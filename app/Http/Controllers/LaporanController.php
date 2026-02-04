@@ -2,27 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Laporan;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $Laporan = Laporan::all();
-        return view('dashboard');
-    }
+        $laporan = Laporan::where('id_user', Auth::user()->id_user)
+            ->with(['kategori', 'user'])
+            ->orderBy('tanggal_laporan', 'desc')
+            ->get();
 
+        $kategori = Kategori::all();
+
+        return view('dashboard', compact('laporan', 'kategori'));
+    }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('dashboard-edit');
+        $kategori = Kategori::all();
+        return view('dashboard', compact('kategori'));
     }
 
     /**
@@ -35,7 +39,7 @@ class LaporanController extends Controller
             'isi_laporan' => 'required|string',
             'tanggal_laporan' => 'required|date',
             'image' => 'required|image|max:4096',
-            'id_kategori' => 'required|integer|exists:tbl_kategori, id_kategori',
+            'id_kategori' => 'required|integer|exists:tbl_kategori,id_kategori',
         ]);
 
         $imagePath = null;
@@ -50,7 +54,7 @@ class LaporanController extends Controller
             'isi_laporan' => $request->isi_laporan,
             'tanggal_laporan' => $request->tanggal_laporan,
             'image' => $imagePath,
-            'id_user' => Auth::user()->id,
+            'id_user' => Auth::user()->id_user,
             'id_kategori' => $request->id_kategori,
         ]);
 

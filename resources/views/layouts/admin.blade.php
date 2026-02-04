@@ -18,11 +18,12 @@
       font-weight: bold;
     }
   </style>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-gray-100 flex">
   <section>
   <!-- Mobile Menu Button -->
-  <button class="sidebar-menu-button fixed left-5 top-5 z-20 hidden lg:hidden w-10 h-10 bg-blue-500 text-white rounded-lg items-center justify-center">
+  <button class="sidebar-menu-button fixed left-5 top-5 z-20 hidden lg:hidden w-10 h-10 bg-blue-500 text-white rounded items-center justify-center">
     <span class="material-symbols-rounded">menu</span>
   </button>
 
@@ -34,7 +35,7 @@
       <a href="#" class="header-logo">
         <img src="logo.png" alt="Logo" class="w-12 h-12 rounded-full object-contain">
       </a>
-      <button class="sidebar-toggler absolute right-5 w-9 h-9 bg-blue-500 text-white rounded-lg flex items-center justify-center transition-all duration-400 hover:bg-blue-800">
+      <button class="sidebar-toggler absolute right-5 w-9 h-9 bg-blue-500 text-white rounded flex items-center justify-center transition-all duration-400 hover:bg-blue-800">
         <span class="material-symbols-rounded transition-transform duration-400">chevron_left</span>
       </button>
     </header>
@@ -46,7 +47,7 @@
         
         <!-- Dashboard -->
         <li class="nav-item relative">
-          <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap">
+          <a href="{{ route('admin.dashboard') }}" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap">
             <span class="material-symbols-rounded">dashboard</span>
             <span class="nav-label transition-opacity duration-300">Dashboard</span>
           </a>
@@ -64,14 +65,14 @@
           </a>
           <ul class="dropdown-menu h-0 overflow-hidden list-none pl-4 transition-all duration-400">
             <li class="nav-item"><a class="nav-link dropdown-title hidden px-4 py-2 text-blue-900 font-medium">Manajemen Akun</a></li>
-            <li class="nav-item"><a href="#" class="nav-link dropdown-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-900 transition-all duration-400 hover:bg-gray-100">Siswa</a></li>
-            <li class="nav-item"><a href="#" class="nav-link dropdown-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-900 transition-all duration-400 hover:bg-gray-100">Admin</a></li>
+            <li class="nav-item"><a href="{{ route('admin.siswa') }}" class="nav-link dropdown-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-900 transition-all duration-400 hover:bg-gray-100">Siswa</a></li>
+            <li class="nav-item"><a href="{{ route('admin.admins') }}" class="nav-link dropdown-link flex items-center gap-3 px-4 py-2 rounded-lg text-gray-900 transition-all duration-400 hover:bg-gray-100">Admin</a></li>
           </ul>
         </li>
 
         <!-- Laporan -->
         <li class="nav-item relative">
-          <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap">
+          <a href="{{ route('admin.laporan') }}" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap">
             <span class="material-symbols-rounded">breaking_news</span>
             <span class="nav-label transition-opacity duration-300">Laporan</span>
           </a>
@@ -84,16 +85,20 @@
       <!-- Secondary Nav (Bottom) -->
       <ul class="nav-list secondary-nav absolute bottom-9 w-full bg-white flex flex-col gap-1 px-4">
 
-        <!-- Sign Out -->
-        <li class="nav-item relative">
-          <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap">
+      <!-- Sign Out -->
+      <li class="nav-item relative">
+        <form method="POST" action="{{ route('logout') }}" id="logout-form">
+          @csrf
+          <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg text-gray-900 border border-white transition-all duration-400 hover:bg-gray-100 whitespace-nowrap"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <span class="material-symbols-rounded">logout</span>
             <span class="nav-label transition-opacity duration-300">Sign Out</span>
           </a>
-          <ul class="dropdown-menu h-0 overflow-hidden list-none pl-4 transition-all duration-400">
-            <li class="nav-item"><a class="nav-link dropdown-title hidden px-4 py-2 text-blue-900 font-medium">Sign Out</a></li>
-          </ul>
-        </li>
+        </form>
+        <ul class="dropdown-menu h-0 overflow-hidden list-none pl-4 transition-all duration-400">
+          <li class="nav-item"><a class="nav-link dropdown-title hidden px-4 py-2 text-blue-900 font-medium">Sign Out</a></li>
+        </ul>
+      </li>
       </ul>
     </nav>
   </aside>
