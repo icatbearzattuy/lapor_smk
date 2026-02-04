@@ -31,22 +31,19 @@
         <label for="id_kategori" class="block font-md text-sm text-gray-700 mb-2">Kategori Laporan</label>
         <select name="id_kategori" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" required>
           @foreach ($kategori as $kat)
-            <option value="{{ $kat->id_kategori }}">
-              {{ old('id_kategori', $laporan->id_kategori) == $kat->nama_kategori}}
-              {{ $kat->nama_kategori }}
-            </option>
+            <option value="{{ $kat->id_kategori }}" {{ old('id_kategori', $laporan->id_kategori) == $kat->id_kategori ? 'selected' : '' }}>{{ $kat->nama_kategori }}</option>
           @endforeach
         </select>
       </div>
       <div class="mb-4">
         <label for="img" class="block font-md text-sm text-gray-700 mb-2">Ubah Bukti Foto</label>
-        <input type="file" name="image" id="imageInput" accept="image/*" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" required>
+        <input type="file" name="image" id="imageInput" accept="image/*" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
         <img id="preview" class="mt-3 w-128 h-128 object-cover rounded hidden">
       </input>
       </div>
       <div class="mt-6 mb-4 space-x-8">
         <button type="submit" class="px-8 py-3 min-w-[120px] text-center text-white bg-blue-500 border border-blue-500 rounded active:text-blue-500 hover:bg-transparent hover:text-blue-500 focus:outline-none focus:ring">Simpan</button>
-        <a href="{{ route('admin.laporan') }}" class="px-8 py-3 min-w-[120px] text-center text-white bg-red-500 border border-red-500 rounded active:text-red-500 hover:bg-transparent hover:text-red-500 focus:outline-none focus:ring">Gajadi</a>
+        <a href="{{ route('admin.laporan') }}" class="px-8 py-3 min-w-[120px] text-center text-white bg-red-500 border border-red-500 rounded active:text-red-500 hover:bg-transparent hover:text-red-500 focus:outline-none focus:ring">Kembali</a>
       </div>
     </form>
 </div>
